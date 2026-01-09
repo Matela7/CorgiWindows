@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CorgiWindows (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "CorgiWindows (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

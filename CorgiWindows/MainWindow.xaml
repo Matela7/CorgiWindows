@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="CorgiWindows.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CorgiWindows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Corgi Focus">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid Background="#0F0B12">
+
+        <!-- ================= RESOURCES ================= -->
+        <Grid.Resources>
+            <SolidColorBrush x:Key="BackgroundBrush" Color="#0F0B12" />
+            <SolidColorBrush x:Key="PanelBrush" Color="#15101A" />
+            <SolidColorBrush x:Key="AccentBrush" Color="#9B84F7" />
+            <SolidColorBrush x:Key="MutedBrush" Color="#7E758A" />
+
+            <Style x:Key="NavButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="Foreground" Value="#DCD7F5" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Width" Value="48" />
+                <Setter Property="Height" Value="48" />
+                <Setter Property="FontFamily" Value="Segoe Fluent Icons" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="12"/>
+            </Style>
+        </Grid.Resources>
+
+        <!-- ================= LAYOUT ================= -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="84" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- ================= SIDEBAR ================= -->
+        <Border Grid.Column="0"
+                Background="{StaticResource PanelBrush}"
+                CornerRadius="0,16,16,0">
+
+            <StackPanel Margin="16"
+                        Spacing="24"
+                        VerticalAlignment="Center">
+
+                <Rectangle Height="1"
+                           Fill="#2A2530"/>
+
+                <StackPanel Spacing="12">
+                    <Button Style="{StaticResource NavButtonStyle}"
+                            Content="&#xE70F;"
+                            Click="NavButton_Click"
+                            Tag="focus"
+                            Background="{StaticResource AccentBrush}" />
+
+                    <Button Style="{StaticResource NavButtonStyle}"
+                            Content="&#xE774;"
+                            Click="NavButton_Click"
+                            Tag="block" />
+
+                    <Button Style="{StaticResource NavButtonStyle}"
+                            Content="&#xE77B;"
+                            Click="NavButton_Click"
+                            Tag="about" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- ================= CONTENT ================= -->
+        <Grid Grid.Column="1">
+
+            <!-- ========== FOCUS VIEW ========== -->
+            <Grid x:Name="FocusView" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="28">
+
+                    <!-- Mascot -->
+                    <Border Background="{StaticResource PanelBrush}"
+                            CornerRadius="24"
+                            Padding="20">
+                        <Image Source="Assets/corgi.png"
+                               Width="160"
+                               Height="160"
+                               Stretch="Uniform"/>
+                    </Border>
+
+                    <!-- App name -->
+                    <TextBlock Text="Corgi"
+                               FontSize="30"
+                               FontWeight="SemiBold"
+                               Foreground="#7E758A"
+                               HorizontalAlignment="Center"/>
+
+                    <!-- Focus toggle -->
+                    <StackPanel Spacing="10"
+                                HorizontalAlignment="Center">
+                        <TextBlock Text="Focus Mode"
+                                   Foreground="#DCD7F5"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"/>
+
+                        <ToggleSwitch x:Name="FocusToggle"
+                                      OnContent=""
+                                      OffContent=""
+                                      Toggled="FocusToggle_Toggled"
+                                      HorizontalContentAlignment="Center"
+                                      Foreground="{StaticResource AccentBrush}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- ========== BLOCKER VIEW ========== -->
+            <Grid x:Name="BlockerView" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        HorizontalAlignment="Right"
+                        Margin="0,12,12,0">
+                    <TextBlock Text="Corgi"
+                               FontSize="16"
+                               Foreground="#5B5269" />
+                </Border>
+
+                <StackPanel Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="520"
+                            Spacing="20">
+
+                    <ItemsControl ItemsSource="{x:Bind BlockedSites, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="local:BlockedWebsite">
+                                <Grid Margin="0,6" Height="48">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="42" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Background="{StaticResource PanelBrush}"
+                                            CornerRadius="10"
+                                            Padding="12,0"
+                                            VerticalAlignment="Center">
+                                        <TextBox Text="{x:Bind Url, Mode=TwoWay}"
+                                                 PlaceholderText="Nazwa strony"
+                                                 BorderThickness="0"
+                                                 Background="Transparent"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"/>
+                                    </Border>
+
+                                    <Button Grid.Column="1"
+                                            Content="&#xE10A;"
+                                            FontFamily="Segoe Fluent Icons"
+                                            Foreground="#7E758A"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Click="RemoveWebsite_Click"
+                                            Tag="{x:Bind Id}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="8"
+                                HorizontalAlignment="Center">
+
+                        <TextBox x:Name="NewWebsiteTextBox"
+                                 Width="360"
+                                 Height="44"
+                                 PlaceholderText="youtube, facebook, reddit..."
+                                 BorderBrush="{StaticResource AccentBrush}"
+                                 Background="{StaticResource PanelBrush}"
+                                 Foreground="White"/>
+
+                        <Button Content="Dodaj"
+                                Width="120"
+                                Height="44"
+                                Background="{StaticResource AccentBrush}"
+                                Foreground="White"
+                                Click="AddWebsite_Click"
+                                CornerRadius="10"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- ========== ABOUT VIEW ========== -->
+            <Grid x:Name="AboutView" Visibility="Collapsed">
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="32"
+                            MaxWidth="600">
+
+                    <TextBlock Text="Corgi Focus"
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Foreground="#DCD7F5"
+                               TextAlignment="Center" />
+
+                    <Border Background="{StaticResource PanelBrush}"
+                            CornerRadius="16"
+                            Padding="28">
+
+                        <StackPanel Spacing="14">
+                            <TextBlock Text="Autor"
+                                       FontSize="14"
+                                       Foreground="#7E758A"
+                                       FontWeight="SemiBold" />
+
+                            <TextBlock Text="Michał Mateła"
+                                       FontSize="20"
+                                       Foreground="#DCD7F5"
+                                       FontWeight="SemiBold" />
+
+                            <Rectangle Height="1"
+                                       Fill="#2A2530"
+                                       Margin="0,10"/>
+
+                            <TextBlock Text="Wersja"
+                                       FontSize="14"
+                                       Foreground="#7E758A"
+                                       FontWeight="SemiBold" />
+
+                            <TextBlock Text="1.0.0"
+                                       FontSize="16"
+                                       Foreground="#DCD7F5" />
+
+                            <Rectangle Height="1"
+                                       Fill="#2A2530"
+                                       Margin="0,10"/>
+
+                            <TextBlock Text="© 2026 Michał Matela. Wszelkie prawa zastrzeżone."
+                                       FontSize="12"
+                                       Foreground="#5B5269"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>
