@@ -152,7 +152,7 @@ namespace CorgiWindows
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error opening corgi orgy popup: {ex.Message}");
+                Debug.WriteLine($"Error opening corgi  popup: {ex.Message}");
             }
         }
     }
