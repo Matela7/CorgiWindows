@@ -9,7 +9,7 @@
 
 ---
 
-## 📋 Spis treści
+## Spis treści
 
 - [Funkcjonalności](#-funkcjonalności)
 - [Wymagania systemowe](#-wymagania-systemowe)
@@ -27,22 +27,22 @@
 
 ---
 
-## ✨ Funkcjonalności
+## Funkcjonalności
 
-### 🎯 Tryb Focus
+### Tryb Focus
 - **Włącz/wyłącz** tryb skupienia jednym przełącznikiem
 - **Ciągłe monitorowanie** aktywnych okien przeglądarki
 - **Natychmiastowa reakcja** na próbę otwarcia zablokowanej strony
 - **Minimalistyczny interfejs** z pieskiem
 
-### 🚫 Zarządzanie blokadami
+### Zarządzanie blokadami
 - **Dodawanie stron** do listy blokowanych
 - **Usuwanie stron** z listy
 - **Edycja istniejących** wpisów
 - **Domyślne blokady**: YouTube i Facebook (przykładowe dane)
 - **Wyszukiwanie częściowe**: blokada działa na podstawie fragmentu nazwy strony w tytule okna
 
-### 📱 Interfejs użytkownika
+### Interfejs użytkownika
 - **Trzy widoki**:
   - **Focus**: Główny widok z przełącznikiem trybu
   - **Blocker**: Zarządzanie listą zablokowanych stron
@@ -53,14 +53,14 @@
 
 ---
 
-## 💻 Wymagania systemowe
+## Wymagania systemowe
 
 ### Minimalne wymagania:
 - **System operacyjny**: Windows 10 (wersja 1809 / build 17763) lub nowszy
 
 
 
-## 🚀 Użytkowanie
+## Użytkowanie
 
 ### Pierwsze uruchomienie
 
@@ -104,7 +104,7 @@
 
 ---
 
-## 🏗️ Architektura projektu
+## Architektura projektu
 
 Aplikacja wykorzystuje architekturę **MVVM-lite** z wyraźnym podziałem na warstwy:
 
@@ -125,7 +125,7 @@ CorgiWindows/
 
 ---
 
-## 📂 Struktura kodu
+## Struktura kodu
 
 ### `MainWindow.xaml`
 **Plik XAML** definiujący interfejs użytkownika:
@@ -259,7 +259,7 @@ public class WebsiteBlockerService
 
 ---
 
-## 🔧 Technologie
+## Technologie
 
 ### Główne frameworki
 - **WinUI 3**: Nowoczesny framework UI dla Windows
@@ -277,7 +277,7 @@ public class WebsiteBlockerService
 - **XAML**: Definicja interfejsu użytkownika
 ---
 
-## 🛠️ Kompilacja z kodu źródłowego
+## Kompilacja z kodu źródłowego
 
 ### Wymagania dla developerów:
 - **Visual Studio 2022** (wersja 17.8 lub nowsza)
@@ -290,7 +290,7 @@ public class WebsiteBlockerService
 
 ---
 
-## ⚙️ Jak to działa
+## Jak to działa
 
 ### Mechanizm monitorowania
 
@@ -348,7 +348,7 @@ foreach (var blockedSite in _model.BlockedWebsites)
 
 ---
 
-## 🎨 Konfiguracja
+## Konfiguracja
 
 ### Zmiana motywu kolorów
 
@@ -379,7 +379,7 @@ Thread.Sleep(100);  // 100ms = 10 razy na sekundę
 ```
 
 
-## 👨‍💻 Autor
+## Autor
 
 **Michał Mateła**
 
