@@ -244,7 +244,7 @@ public class WebsiteBlockerService
     private void MonitorBrowsers()         // Pętla monitorująca
     private string GetActiveWindowTitle()  // Pobierz tytuł okna
     private bool IsBlockedWebsiteOpen()    // Sprawdź blokadę
-    private void OpenCorgiOrgyPopup()      // Otwórz Corgi Orgy
+    private void OpenCorgiOrgyPopup()      // Otwórz popup
 }
 ```
 
